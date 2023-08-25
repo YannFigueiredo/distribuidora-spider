@@ -1,24 +1,25 @@
 import { connection } from "../database/connect.js";
 import { DataTypes } from "sequelize";
 
-const ProductModel = connection.define("Product", {
+const ProductTypeModel = connection.define("Product_Type", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoInCrement: true
   },
-  register: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  sale: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  batch: {
+  name: {
     type: DataTypes.STRING,
+    allowNull: false
+  },
+  value: {
+    type: DataTypes.FLOAT,
+    allowNull: false
+  },
+  quantity: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 });
 
-export default ProductModel;
+export default ProductTypeModel;
+
