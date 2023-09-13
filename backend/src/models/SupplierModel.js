@@ -13,4 +13,12 @@ const SupplierModel = connection.define("Supplier", {
   }
 });
 
+const init = async () => {
+  let ProductTypeModel = (await import("./ProductTypeModel.js")).default;
+
+  SupplierModel.hasMany(ProductTypeModel, { foreignKey: "supplierId" });
+};
+
+init();
+
 export default SupplierModel;
