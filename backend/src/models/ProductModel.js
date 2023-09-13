@@ -8,6 +8,14 @@ const ProductModel = connection.define("Product", {
     primaryKey: true,
     autoIncrement: true
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  quantity: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
   register: {
     type: DataTypes.DATE,
     allowNull: false
