@@ -21,7 +21,7 @@ const ProductTypeModel = connection.define("Product_Type", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  categoryId: {
+  category: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -29,7 +29,7 @@ const ProductTypeModel = connection.define("Product_Type", {
       key: "id"
     }
   },
-  supplierId: {
+  supplier: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
@@ -42,9 +42,11 @@ const ProductTypeModel = connection.define("Product_Type", {
 const init = async () => {
   let CategoryModel = (await import("./CategoryModel.js")).default;
   let SupplierModel = (await import("./SupplierModel.js")).default;
+  let ProductModel = (await import("./ProductModel.js")).default;
 
-  ProductTypeModel.belongsTo(CategoryModel, { foreignKey: "categoryId" });
-  ProductTypeModel.belongsTo(SupplierModel, { foreignKey: "supplierId" });
+  ProductTypeModel.belongsTo(CategoryModel, { foreignKey: "category" });
+  ProductTypeModel.belongsTo(SupplierModel, { foreignKey: "supplier" });
+  ProductTypeModel.hasMany(ProductModel, { foreignKey: "productType" });
 };
 
 init();

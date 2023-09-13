@@ -16,7 +16,7 @@ const CategoryModel = connection.define("Category", {
 const init = async () => {
   let ProductTypeModel = (await import("./ProductTypeModel.js")).default;
 
-  CategoryModel.hasMany(ProductTypeModel, { foreignKey: "categoryId" });
+  CategoryModel.hasMany(ProductTypeModel, { foreignKey: "category" });
 };
 
 init();
