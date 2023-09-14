@@ -10,6 +10,8 @@ import ProductTypeModel from "./models/ProductTypeModel.js";
 import CategoryModel from "./models/CategoryModel.js";
 import SupplierModel from "./models/SupplierModel.js";
 import OrderModel from "./models/OrderModel.js";
+import ControlModel from "./models/ControlModel.js";
+import { seed } from "./database/seed.js";
 
 const app = express();
 
@@ -22,6 +24,7 @@ app.use(supplierRouter);
 app.use(orderRouter);
 
 testConnection();
+seed();
 
 try {
   ProductModel.sync();
@@ -29,6 +32,7 @@ try {
   CategoryModel.sync();
   SupplierModel.sync();
   OrderModel.sync();
+  ControlModel.sync();
 
   console.log("Banco de dados sincronizado!");
 } catch(error) {
