@@ -1,6 +1,7 @@
 import { connection } from "../database/connect.js";
 import { DataTypes } from "sequelize";
 import ProductTypeModel from "./ProductTypeModel.js";
+import OrderModel from "./OrderModel.js";
 
 const ProductModel = connection.define("Product", {
   id: {
@@ -16,14 +17,6 @@ const ProductModel = connection.define("Product", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  register: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  sale: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
   batch: {
     type: DataTypes.STRING,
     allowNull: false
@@ -35,13 +28,23 @@ const ProductModel = connection.define("Product", {
       name: ProductTypeModel,
       key: "id"
     }
+  },
+  order: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      name: OrderModel,
+      key: "id"
+    }
   }
 });
 
 const init = async () => {
   let ProductTypeModel = (await import("./ProductTypeModel.js")).default;
+  let OrderModel = (await import("./OrderModel.js")).default;
 
   ProductModel.belongsTo(ProductTypeModel, { foreignKey: "productType" });
+  ProductModel.belongsTo(OrderModel, { foreignKey: "order" });
 };
 
 init();
