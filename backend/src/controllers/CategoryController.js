@@ -2,15 +2,31 @@ import CategoryRepository from "../repositories/CategoryRepository.js";
 
 class CategoryController {
   async listCategories(_, res) {
-    const result = await CategoryRepository.getCategory();
-
-    res.status(200).json(result);
+    try {
+      const result = await CategoryRepository.getCategory();
+  
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({message: "Não foi possível encontrar as categorias."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao listar as categorias: ${error}`});
+    }
   }
 
   async listCategory(req, res) {
-    const result = await CategoryRepository.getCategoryById(req.params.id);
-    
-    res.status(200).json(result);
+    try {
+      const result = await CategoryRepository.getCategoryById(req.params.id);
+      
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({message: "Não foi possível encontrar a categoria."})
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao listar a categoria: ${error}`});
+    }
   }
 
   async createCategory(req, res) {
@@ -23,7 +39,7 @@ class CategoryController {
         res.status(500).json({message: "Não foi possível criar a categoria."});
       }
     } catch(error) {
-      res.status(500).json({message: "Ocorreu um erro ao criar a categoria: ", error});
+      res.status(400).json({message: "Ocorreu um erro ao criar a categoria: ", error});
     }
   }
 
@@ -34,10 +50,10 @@ class CategoryController {
       if(result) {
         res.status(200).json(result);
       } else {
-        res.status(500).json({message: "Não foi possível atualizar a categoria."});
+        res.status(400).json({message: "Não foi possível atualizar a categoria."});
       }
     } catch(error) {
-      res.status(500).json({message: "Ocorreu um erro ao atualizar a categoria: ", error});
+      res.status(400).json({message: "Ocorreu um erro ao atualizar a categoria: ", error});
     }
   }
 
@@ -48,10 +64,10 @@ class CategoryController {
       if(result) {
         res.status(200).json({message: "Categoria apagada com sucesso."});
       } else {
-        res.status(500).json({message: "Não foi possível apagar a categoria."});
+        res.status(400).json({message: "Não foi possível apagar a categoria."});
       }
     } catch(error) {
-      res.status(500).json({message: "Ocorreu um erro ao apagar a categoria: ", error});
+      res.status(400).json({message: "Ocorreu um erro ao apagar a categoria: ", error});
     }
   }
 }
