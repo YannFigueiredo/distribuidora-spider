@@ -1,22 +1,74 @@
+import ProductRepository from "../repositories/ProductRepository.js";
+
 class ProductController {
-  listProducts(_, res) {
-    res.status(200).send("listados produtos");
+  async listProducts(_, res) {
+    try {
+      const result = await ProductRepository.getProduct();
+
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({message: `Não foi possível encontrar os produtos.`})
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao listar os produtos: ${error}`});
+    }
   }
 
-  listProduct(req, res) {
-    res.status(200).send(`listado produto com id ${req.params.id}`);
+  async listProduct(req, res) {
+    try {
+      const result = await ProductTypeRepository.getProductById(req.params.id);
+
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({message: `Não foi possível encontrar o produto.`})
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao listar o produto: ${error}`});
+    }
   }
 
-  createProduct(req, res) {
-    res.status(201).send("criado produto");
+  async createProduct(req, res) {
+    try {
+      const result = await ProductTypeRepository.createProduct(req.body);
+
+      if(result) {
+        res.status(201).json(result);
+      } else {
+        res.status(400).json({message: "Não foi possível criar o produto."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao criar o produto: ${error}`});
+    }
   }
 
-  updateProduct(req, res) {
-    res.status(200).send("atualizado produto");
+  async updateProduct(req, res) {
+    try {
+      const result = await ProductTypeRepository.updateProduct(req.params.id, req.body);
+
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(400).json({message: "Não foi possível atualizar o produto."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao atualizar o produto: ${error}`});
+    }
   }
 
-  deleteProduct(req, res) {
-    res.status(200).send("deletado produto");
+  async deleteProduct(req, res) {
+    try {
+      const result = await ProductTypeRepository.deleteProduct(req.params.id);
+
+      if(result) {
+        res.status(200).json({message: "Produto apagado com sucesso."});
+      } else {
+        res.status(400).json({message: "Não foi possível apagar o produto."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao apagar o produto: ${error}`});
+    }
   }
 }
 

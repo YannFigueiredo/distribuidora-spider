@@ -1,22 +1,74 @@
+import ProductTypeRepository from "../repositories/ProductTypeRepository.js";
+
 class ProductTypeController {
-  listProductsTypes(_, res) {
-    res.status(200).send("listados tipos de produtos");
+  async listProductsTypes(_, res) {
+    try {
+      const result = await ProductTypeRepository.getProductType();
+
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({message: `Não foi possível encontrar os tipos de produtos.`})
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao listar os tipos de produtos: ${error}`});
+    }
   }
 
-  listProductType(req, res) {
-    res.status(200).send("listado tipo de produto");
+  async listProductType(req, res) {
+    try {
+      const result = await ProductTypeRepository.getProductTypeById(req.params.id);
+
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).json({message: `Não foi possível encontrar o tipo de produto.`})
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao listar o tipo de produto: ${error}`});
+    }
   }
 
-  createProductType(req, res) {
-    res.status(201).send("criado tipo de produto");
+  async createProductType(req, res) {
+    try {
+      const result = await ProductTypeRepository.createProductType(req.body);
+
+      if(result) {
+        res.status(201).json(result);
+      } else {
+        res.status(400).json({message: "Não foi possível criar o tipo de produto."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao criar o tipo de produto: ${error}`});
+    }
   }
 
-  updateProductType(req, res) {
-    res.status(200).send("atualizado tipo de produto");
+  async updateProductType(req, res) {
+    try {
+      const result = await ProductTypeRepository.updateProductType(req.params.id, req.body);
+
+      if(result) {
+        res.status(200).json(result);
+      } else {
+        res.status(400).json({message: "Não foi possível atualizar o tipo de produto."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao atualizar o tipo de produto: ${error}`});
+    }
   }
 
-  deleteProductType(req, res) {
-    res.status(200).send("deletado tipo de produto");
+  async deleteProductType(req, res) {
+    try {
+      const result = await ProductTypeRepository.deleteProductType(req.params.id);
+
+      if(result) {
+        res.status(200).json({message: "Tipo de produto apagado com sucesso."});
+      } else {
+        res.status(400).json({message: "Não foi possível apagar o tipo de produto."});
+      }
+    } catch(error) {
+      res.status(400).json({message: `Ocorreu um erro ao apagar o tipo de produto: ${error}`});
+    }
   }
 }
 
