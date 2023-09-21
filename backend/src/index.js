@@ -13,7 +13,7 @@ import OrderModel from "./models/OrderModel.js";
 import ControlModel from "./models/ControlModel.js";
 import OrderProductModel from "./models/OrderProductModel.js";
 import { seed } from "./database/seed.js";
-import { setupAssociations } from "./models/associations.js";
+import { setupAssociations } from "./database/associations.js";
 
 const app = express();
 
