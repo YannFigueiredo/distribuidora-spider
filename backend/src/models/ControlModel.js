@@ -1,16 +1,24 @@
 import { connection } from "../database/connect.js";
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
-const ControlModel = connection.define("Control", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
+class ControlModel extends Model {} 
+
+ControlModel.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
+  {
+    sequelize: connection,
+    modelName: "Control"
   }
-});
+);
 
 export default ControlModel;

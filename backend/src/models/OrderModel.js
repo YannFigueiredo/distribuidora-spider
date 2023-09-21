@@ -1,32 +1,32 @@
 import { connection } from "../database/connect.js";
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
-const OrderModel = connection.define("Order", {
-  id: {
-    primaryKey: true,
-    type: DataTypes.INTEGER,
-    autoIncrement: true
+class OrderModel extends Model {}
+
+OrderModel.init(
+  {
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: true
+    },
+    value: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    type: {
+      type: DataTypes.ENUM("sale", "purchase"),
+      allowNull: false
+    }
   },
-  value: {
-    type: DataTypes.FLOAT,
-    allowNull: false
-  },
-  date: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  type: {
-    type: DataTypes.ENUM("sale", "purchase"),
-    allowNull: false
+  {
+    sequelize: connection,
+    modelName: "Order"
   }
-});
-
-const init = async () => {
-  let ProductModel = (await import("./ProductModel.js")).default;
-
-  OrderModel.hasMany(ProductModel, { foreignKey: "order" })
-};
-
-init();
+);
 
 export default OrderModel;

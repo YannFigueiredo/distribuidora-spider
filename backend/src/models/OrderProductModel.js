@@ -1,24 +1,20 @@
 import { connection } from "../database/connect.js";
 import { DataTypes, Model } from "sequelize";
 
-class SupplierModel extends Model {}
+class OrderProductModel extends Model {}
 
-SupplierModel.init(
+OrderProductModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
   },
   {
     sequelize: connection,
-    modelName: "Supplier"
+    modelName: "Order_Product"
   }
 );
 
-export default SupplierModel;
+export default OrderProductModel;

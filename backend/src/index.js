@@ -11,7 +11,9 @@ import CategoryModel from "./models/CategoryModel.js";
 import SupplierModel from "./models/SupplierModel.js";
 import OrderModel from "./models/OrderModel.js";
 import ControlModel from "./models/ControlModel.js";
+import OrderProductModel from "./models/OrderProductModel.js";
 import { seed } from "./database/seed.js";
+import { setupAssociations } from "./models/associations.js";
 
 const app = express();
 
@@ -26,17 +28,26 @@ app.use(orderRouter);
 testConnection();
 seed();
 
-try {
-  ProductModel.sync();
-  ProductTypeModel.sync();
-  CategoryModel.sync();
-  SupplierModel.sync();
-  OrderModel.sync();
-  ControlModel.sync();
+(async () => {
+  try {
+    await ControlModel.sync({ force: true });
+    await CategoryModel.sync({ force: true });
+    await SupplierModel.sync({ force: true });
+    await ProductTypeModel.sync({ force: true });
+    await ProductModel.sync({ force: true });
+    await OrderModel.sync({ force: true });
+    await OrderProductModel.sync({ force: true });
 
-  console.log("Banco de dados sincronizado!");
+    console.log("Banco de dados sincronizado!");
+  } catch(error) {
+    console.error("Falha na sincronização do banco de dados: ", error);
+  }
+})();
+
+try {
+  setupAssociations();
 } catch(error) {
-  console.error("Falha na sincronização do banco de dados: ", error);
-}
+  console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
+} 
 
 export default app;
