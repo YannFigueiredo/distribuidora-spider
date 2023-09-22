@@ -39,7 +39,11 @@ ProductModel.init(
       allowNull: false,
       validate: {
         notEmpty: { msg: "O lote do produto precisa ser informado!" },
-        isAlphanumeric: { msg: "A identificação do lote do produto precisa ser um texto alfanumérico!" }
+        isValidText: (value) => {
+          if(!/^[a-z0-9áâãàéèêóôõí-\s]+$/i.test(value)) {
+            throw new Error("O nome do tipo de produto precisa ser um texto válido!");
+          }
+        }
       }
     }
   },

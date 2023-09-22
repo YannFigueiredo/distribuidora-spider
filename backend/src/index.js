@@ -37,18 +37,18 @@ testConnection();
     await OrderModel.sync({ force: true });
     await OrderProductModel.sync({ force: true });
 
-    seed();
-
     console.log("Banco de dados sincronizado!");
+    
+    try {
+      setupAssociations();
+    } catch(error) {
+      console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
+    } 
+    
+    await seed();
   } catch(error) {
     console.error("Falha na sincronização do banco de dados: ", error);
   }
 })();
-
-try {
-  setupAssociations();
-} catch(error) {
-  console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
-} 
 
 export default app;

@@ -15,7 +15,11 @@ CategoryModel.init(
       allowNull: false,
       validate: {
         notEmpty: { msg: "O nome da categoria precisa ser informado!" },
-        isAlphanumeric: { msg: "O nome da categoria precisa ser um texto alfanumérico!" }
+        isValidText: (value) => {
+          if(!/^[a-záâãàéèêóôõí-]+$/i.test(value)) {
+            throw new Error("O nome da categoria precisa ser um texto válido!");
+          }
+        }
       }
     }
   },

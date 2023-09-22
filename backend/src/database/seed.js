@@ -1,12 +1,12 @@
 import CategoryModel from "../models/CategoryModel.js";
 import ControlModel from "../models/ControlModel.js";
+import SupplierModel from "../models/SupplierModel.js";
+import ProductTypeModel from "../models/ProductTypeModel.js";
 
 export const seed = async () => {
+  const control = await ControlModel.findOne({ where: { name: 'seed_executed' } });
+  
   try {
-    const control = await ControlModel.findOne({ where: { name: 'seed_executed' } })
-    .then(result => {return result})
-    .catch(error => console.error("Erro ao acessar a tabela de controle de dados provisionados: ", error));
-
     if(!control) {
       await CategoryModel.create({
         name: "Video-Game"
@@ -27,14 +27,50 @@ export const seed = async () => {
       await CategoryModel.create({
         name: "Roupa"
       });
-      
+
+      await SupplierModel.create({
+        name: "Sony"
+      });
+
+      await SupplierModel.create({
+        name: "Samsung"
+      });
+
+      await SupplierModel.create({
+        name: "Nike"
+      });
+
+      await SupplierModel.create({
+        name: "Electrolux"
+      });
+
+      await SupplierModel.create({
+        name: "Estrela"
+      });
+
+      await ProductTypeModel.create({
+        name: "Playstation 5"
+      });
+
+      await ProductTypeModel.create({
+        name: "Jogo de Tabuleiro"
+      });
+
+      await ProductTypeModel.create({
+        name: "Smart TV"
+      });
+
+      await ProductTypeModel.create({
+        name: "Geladeira"
+      });
+
       await ControlModel.create({
         name: "seed_executed"
       });
 
       console.log("Banco de dados provisionado com sucesso.");
     }
-  } catch {
-    error => console.error("Erro ao provisionar o banco de dados: ", error);
+  } catch(error) {
+    console.error("Erro ao provisionar o banco de dados: ", error);
   }
 };

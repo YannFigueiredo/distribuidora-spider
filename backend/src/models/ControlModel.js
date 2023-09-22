@@ -17,7 +17,8 @@ ControlModel.init(
   },
   {
     sequelize: connection,
-    modelName: "Control"
+    modelName: "Control",
+    tableName: "controls"
   }
 );
 

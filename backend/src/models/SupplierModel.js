@@ -15,7 +15,11 @@ SupplierModel.init(
       allowNull: false,
       validate: {
         notEmpty: "O nome da categoria precisa ser informada!",
-        isAlphanumeric: { msg: "O nome do fornecedor precisa ser um texto alfanumérico!" }
+        isValidText: (value) => {
+          if(!/^[a-záâãàéèêóôõí-]+$/i.test(value)) {
+            throw new Error("O nome do fornecedor precisa ser um texto válido!");
+          }
+        }
       }
     }
   },
