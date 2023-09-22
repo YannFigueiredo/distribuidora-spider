@@ -12,7 +12,11 @@ CategoryModel.init(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "O nome da categoria precisa ser informado!" },
+        isAlphanumeric: { msg: "O nome da categoria precisa ser um texto alfanumérico!" }
+      }
     }
   },
   {

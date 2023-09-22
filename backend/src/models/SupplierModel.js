@@ -12,7 +12,11 @@ SupplierModel.init(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: "O nome da categoria precisa ser informada!",
+        isAlphanumeric: { msg: "O nome do fornecedor precisa ser um texto alfanumérico!" }
+      }
     }
   },
   {

@@ -26,7 +26,6 @@ app.use(supplierRouter);
 app.use(orderRouter);
 
 testConnection();
-seed();
 
 (async () => {
   try {
@@ -37,6 +36,8 @@ seed();
     await ProductModel.sync({ force: true });
     await OrderModel.sync({ force: true });
     await OrderProductModel.sync({ force: true });
+
+    seed();
 
     console.log("Banco de dados sincronizado!");
   } catch(error) {

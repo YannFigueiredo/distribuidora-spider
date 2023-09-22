@@ -12,11 +12,11 @@ ProductTypeModel.init(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    value: {
-      type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: "O nome do tipo de produto precisa ser informado!" },
+        isAlphanumeric: { msg: "O nome do tipo de produto precisa ser um texto alfanumérico!" }
+      }
     }
   },
   {
