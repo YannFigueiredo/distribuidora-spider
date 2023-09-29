@@ -1,9 +1,9 @@
-import OrderRepository from "../repositories/OrderRepository.js";
+import OrderProductRepository from "../repositories/OrderProductRepository.js";
 
-class OrderController {
-  async listOrders(_, res) {
+class OrderProductController {
+  async listOrdersProduct(_, res) {
     try {
-      const result = await OrderRepository.getOrder();
+      const result = await OrderProductRepository.getOrder();
 
       if(result) {
         res.status(200).json(result);
@@ -15,9 +15,9 @@ class OrderController {
     }
   }
 
-  async listOrder(req, res) {
+  async listOrderProduct(req, res) {
     try {
-      const result = await OrderRepository.getOrderById(req.params.id);
+      const result = await OrderProductRepository.getOrderProductById(req.params.id);
 
       if(result) {
         res.status(200).json(result);
@@ -29,9 +29,9 @@ class OrderController {
     }
   }
 
-  async createOrder(req, res) {
+  async createOrderProduct(req, res) {
     try {
-      const result = await OrderRepository.createOrder(req.body);
+      const result = await OrderProductRepository.createOrderProduct(req.body);
 
       if(result) {
         res.status(201).json(result);
@@ -43,9 +43,9 @@ class OrderController {
     }
   }
 
-  async updateOrder(req, res) {
+  async updateOrderProduct(req, res) {
     try {
-      const result = await OrderRepository.updateOrder(req.params.id, req.body);
+      const result = await OrderProductRepository.updateOrderProduct(req.params.id, req.body);
 
       if(result) {
         res.status(200).json(result);
@@ -57,9 +57,9 @@ class OrderController {
     }
   }
 
-  async deleteOrder(req, res) {
+  async deleteOrderProduct(req, res) {
     try {
-      const result = await OrderRepository.deleteOrder(req.params.id);
+      const result = await OrderProductRepository.deleteOrderProduct(req.params.id);
 
       if(result) {
         res.status(200).json({message: "Ordem apagada com sucesso."});
@@ -72,4 +72,4 @@ class OrderController {
   }
 }
 
-export default new OrderController();
+export default new OrderProductController();
