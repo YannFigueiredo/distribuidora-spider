@@ -10,7 +10,15 @@ categoryRouter.post(
   CategoryController.createValidation,
   CategoryController.createCategory
 );
-categoryRouter.patch("/category/:id", CategoryController.updateCategory);
-categoryRouter.delete("/category/:id", CategoryController.deleteCategory);
+categoryRouter.patch(
+  "/category/:id",
+  CategoryController.updateValidation, 
+  CategoryController.updateCategory
+);
+categoryRouter.delete(
+  "/category/:id", 
+  CategoryController.deleteValidation,
+  CategoryController.deleteCategory
+);
 
 export default categoryRouter;

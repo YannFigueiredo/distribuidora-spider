@@ -9,6 +9,21 @@ class CategoryController {
     })
   });
 
+  updateValidation = validation({
+    body: yup.object({
+      name: yup.string().min(3)
+    }),
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
+  deleteValidation = validation({
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
   async listCategories(_, res) {
     try {
       const result = await CategoryRepository.getCategory();
