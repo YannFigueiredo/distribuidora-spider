@@ -1,6 +1,14 @@
 import CategoryRepository from "../repositories/CategoryRepository.js";
+import { validation } from "../middleware/Validation.js";
+import * as yup from "yup";
 
 class CategoryController {
+  createValidation = validation({
+    body: yup.object({
+      name: yup.string().required().min(3)
+    })
+  });
+
   async listCategories(_, res) {
     try {
       const result = await CategoryRepository.getCategory();
