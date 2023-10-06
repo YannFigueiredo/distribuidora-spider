@@ -41,7 +41,7 @@ ProductModel.init(
         notEmpty: { msg: "O lote do produto precisa ser informado!" },
         isValidText: (value) => {
           if(!/^[a-z0-9áâãàéèêóôõí-\s]+$/i.test(value)) {
-            throw new Error("O nome do tipo de produto precisa ser um texto válido!");
+            throw new Error("O nome do lote do produto precisa ser um texto válido!");
           }
         }
       }

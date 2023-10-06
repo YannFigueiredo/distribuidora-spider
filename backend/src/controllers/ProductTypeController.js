@@ -1,6 +1,29 @@
 import ProductTypeRepository from "../repositories/ProductTypeRepository.js";
+import { validation } from "../middleware/Validation.js";
+import * as yup from "yup";
 
 class ProductTypeController {
+  createValidation = validation({
+    body: yup.object({
+      name: yup.string().required().min(3)
+    })
+  });
+
+  updateValidation = validation({
+    body: yup.object({
+      name: yup.string().min(3)
+    }),
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
+  deleteValidation = validation({
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
   async listProductsTypes(_, res) {
     try {
       const result = await ProductTypeRepository.getProductType();

@@ -1,6 +1,35 @@
 import ProductRepository from "../repositories/ProductRepository.js";
+import { validation } from "../middleware/Validation.js";
+import * as yup from "yup";
 
 class ProductController {
+  createValidation = validation({
+    body: yup.object({
+      name: yup.string().required().min(3),
+      quantity: yup.number().required().min(1),
+      value: yup.number().required(),
+      batch: yup.string().required()
+    })
+  });
+
+  updateValidation = validation({
+    body: yup.object({
+      name: yup.string().min(2),
+      quantity: yup.number().min(1),
+      value: yup.number(),
+      batch: yup.string()
+    }),
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
+  deleteValidation = validation({
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
   async listProducts(_, res) {
     try {
       const result = await ProductRepository.getProduct();

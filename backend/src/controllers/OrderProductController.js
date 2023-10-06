@@ -1,6 +1,20 @@
 import OrderProductRepository from "../repositories/OrderProductRepository.js";
+import { validation } from "../middleware/Validation.js";
+import * as yup from "yup";
 
 class OrderProductController {
+  updateValidation = validation({
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
+  deleteValidation = validation({
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
   async listOrdersProduct(_, res) {
     try {
       const result = await OrderProductRepository.getOrder();

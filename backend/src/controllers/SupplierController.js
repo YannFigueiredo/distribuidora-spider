@@ -1,6 +1,29 @@
 import SupplierRepository from "../repositories/SupplierRepository.js";
+import { validation } from "../middleware/Validation.js";
+import * as yup from "yup";
 
 class SupplierController {
+  createValidation = validation({
+    body: yup.object({
+      name: yup.string().required().min(3)
+    })
+  });
+
+  updateValidation = validation({
+    body: yup.object({
+      name: yup.string().min(3)
+    }),
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
+  deleteValidation = validation({
+    params: yup.object({
+      id: yup.number().required()
+    })
+  });
+
   async listSuppliers(_, res) {
     try {
       const result = await SupplierRepository.getSupplier();
