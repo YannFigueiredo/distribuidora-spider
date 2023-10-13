@@ -14,6 +14,7 @@ import ControlModel from "./models/ControlModel.js";
 import OrderProductModel from "./models/OrderProductModel.js";
 import { seed } from "./database/seed.js";
 import { setupAssociations } from "./database/associations.js";
+import "./shared/services/TranslationsYup";
 
 const app = express();
 
