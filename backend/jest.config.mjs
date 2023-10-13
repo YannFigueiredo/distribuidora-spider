@@ -74,16 +74,14 @@ const config = {
   // ],
 
   // An array of file extensions your modules use
-  // moduleFileExtensions: [
-  //   "js",
-  //   "mjs",
-  //   "cjs",
-  //   "jsx",
-  //   "ts",
-  //   "tsx",
-  //   "json",
-  //   "node"
-  // ],
+  moduleFileExtensions: [
+    "js",
+    "json"
+  ],
+    // ...
+  transform: {
+    '^.+\\.js$': 'babel-jest',
+  },
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
@@ -134,7 +132,7 @@ const config = {
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   setupFilesAfterEnv: [
-    "./tests/jest.setup.js"
+    "./src/tests/jest.setup.js"
   ],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
@@ -154,7 +152,7 @@ const config = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: [
-    "<rootDir>/tests/**/*.test.js"
+    "<rootDir>/src/tests/**/*.test.js"
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
