@@ -38,7 +38,7 @@ class CategoryRepository {
       );
       
       if(result > 0)
-        return CategoryModel.findByPk(id);
+        return await CategoryModel.findByPk(id);
     } catch(error) {
       console.error("Não foi possível atualizar a categoria: ", error);
     }

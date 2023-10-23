@@ -14,7 +14,7 @@ import ControlModel from "./models/ControlModel.js";
 import OrderProductModel from "./models/OrderProductModel.js";
 import { seed } from "./database/seed.js";
 import { setupAssociations } from "./database/associations.js";
-import "./shared/services/TranslationsYup";
+import "./shared/services/TranslationsYup.js";
 
 const app = express();
 
@@ -26,7 +26,8 @@ app.use(categoryRouter);
 app.use(supplierRouter);
 app.use(orderRouter);
 
-testConnection();
+if(process.env.NODE_ENV !== "test")
+  testConnection();
 
 (async () => {
   try {
