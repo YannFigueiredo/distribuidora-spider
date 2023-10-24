@@ -26,31 +26,32 @@ app.use(categoryRouter);
 app.use(supplierRouter);
 app.use(orderRouter);
 
-if(process.env.NODE_ENV !== "test")
+if(process.env.NODE_ENV !== "test") {
   testConnection();
-
-(async () => {
-  try {
-    await ControlModel.sync({ force: true });
-    await CategoryModel.sync({ force: true });
-    await SupplierModel.sync({ force: true });
-    await ProductTypeModel.sync({ force: true });
-    await ProductModel.sync({ force: true });
-    await OrderModel.sync({ force: true });
-    await OrderProductModel.sync({ force: true });
-
-    console.log("Banco de dados sincronizado!");
-    
+  
+  (async () => {
     try {
-      setupAssociations();
+      await ControlModel.sync({ force: true });
+      await CategoryModel.sync({ force: true });
+      await SupplierModel.sync({ force: true });
+      await ProductTypeModel.sync({ force: true });
+      await ProductModel.sync({ force: true });
+      await OrderModel.sync({ force: true });
+      await OrderProductModel.sync({ force: true });
+  
+      console.log("Banco de dados sincronizado!");
+      
+      try {
+        setupAssociations();
+      } catch(error) {
+        console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
+      } 
+      
+      await seed();
     } catch(error) {
-      console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
-    } 
-    
-    await seed();
-  } catch(error) {
-    console.error("Falha na sincronização do banco de dados: ", error);
-  }
-})();
+      console.error("Falha na sincronização do banco de dados: ", error);
+    }
+  })();
+}
 
 export default app;

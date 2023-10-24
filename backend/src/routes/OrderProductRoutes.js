@@ -3,16 +3,16 @@ import OrderProductController from "../controllers/OrderProductController.js";
 
 const orderProductRouter = Router();
 
-orderProductRouter.get("/order", OrderProductController.listOrders);
-orderProductRouter.get("/order/:id", OrderProductController.listOrder);
-orderProductRouter.post("/order", OrderProductController.createOrder);
+orderProductRouter.get("/order-product", OrderProductController.listOrders);
+orderProductRouter.get("/order-product/:id", OrderProductController.listOrder);
+orderProductRouter.post("/order-product", OrderProductController.createOrder);
 orderProductRouter.patch(
-  "/order/:id",
+  "/order-product/:id",
   OrderProductController.updateValidation,
   OrderProductController.updateOrder
 );
 orderProductRouter.delete(
-  "/order/:id",
+  "/order-product/:id",
   OrderProductController.deleteValidation,
   OrderProductController.deleteOrder
 );

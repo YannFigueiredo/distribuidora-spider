@@ -1,24 +1,24 @@
 import { Router } from "express";
-import SupplierController from "../controllers/CategoryController.js";
+import SupplierController from "../controllers/SupplierController.js";
 
 const supplierRouter = Router();
 
-supplierRouter.get("/category", SupplierController.listCategories);
-supplierRouter.get("/category/:id", SupplierController.listCategory);
+supplierRouter.get("/supplier", SupplierController.listSuppliers);
+supplierRouter.get("/supplier/:id", SupplierController.listSupplier);
 supplierRouter.post(
-  "/category", 
+  "/supplier", 
   SupplierController.createValidation,
-  SupplierController.createCategory
+  SupplierController.createSupplier
 );
 supplierRouter.put(
-  "/category/:id",
+  "/supplier/:id",
   SupplierController.updateValidation,
-  SupplierController.updateCategory
+  SupplierController.updateSupplier
 );
 supplierRouter.delete(
-  "/category/:id", 
+  "/supplier/:id", 
   SupplierController.deleteValidation,
-  SupplierController.deleteCategory
+  SupplierController.deleteSupplier
 );
 
 export default supplierRouter;
