@@ -23,7 +23,7 @@ describe("Atualização de fornecedor", () => {
                       .patch("/supplier/999")
                       .send({});
     
-    expect(response.statusCode).toEqual(400);
+    expect(response.statusCode).toEqual(404);
     expect(response.body).toEqual({
       message: "Não foi possível atualizar o fornecedor."
     });
