@@ -15,10 +15,14 @@ import OrderProductModel from "./models/OrderProductModel.js";
 import { seed } from "./database/seed.js";
 import { setupAssociations } from "./database/associations.js";
 import "./shared/services/TranslationsYup.js";
+import swaggerUiExpress from "swagger-ui-express";
+import swaggerSpec from "./swaggerOptions.js";
 
 const app = express();
 
 app.use(express.json());
+
+app.use("/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerSpec));
 
 app.use(productTypeRouter);
 app.use(productRouter);
