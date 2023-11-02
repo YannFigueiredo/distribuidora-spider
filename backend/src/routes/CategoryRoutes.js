@@ -94,13 +94,6 @@ categoryRouter.get("/category/:id", CategoryController.listCategory);
  *     summary: Cria uma categoria
  *     tags:
  *      - Categoria
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: O ID da categoria
  *     requestBody:
  *      required: true
  *      content:
@@ -110,7 +103,7 @@ categoryRouter.get("/category/:id", CategoryController.listCategory);
  *            properties:
  *              name:
  *                type: string
- *                description: Nome da categoria
+ *                description: Nome da categoria 
  *            required:
  *              - name 
  *     responses:
@@ -119,24 +112,22 @@ categoryRouter.get("/category/:id", CategoryController.listCategory);
  *         content:
  *          application/json:
  *            schema:
- *              type: array
- *              items:
- *                type: object
- *                properties:
- *                  id:
- *                    type: integer
- *                    description: id da categoria
- *                  name:
- *                    type: string
- *                    description: nome da categoria
- *                  createdAt:
- *                    type: string
- *                    format: date
- *                    description: criação da categoria
- *                  updatedAt:
- *                    type: string
- *                    format: date
- *                    description: atualização da categoria
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: id da categoria
+ *                 name:
+ *                   type: string
+ *                   description: nome da categoria
+ *                 createdAt:
+ *                   type: string
+ *                   format: date
+ *                   description: criação da categoria
+ *                 updatedAt:
+ *                   type: string
+ *                   format: date
+ *                   description: atualização da categoria
  *       400:
  *         description: Bad Request
  */

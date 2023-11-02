@@ -59,7 +59,7 @@ class CategoryController {
       if(result) {
         await res.status(201).json(result);
       } else {
-        await res.status(500).json({message: "Não foi possível criar a categoria."});
+        await res.status(400).json({message: "Não foi possível criar a categoria."});
       }
     } catch(error) {
       await res.status(400).json({message: "Ocorreu um erro ao criar a categoria: ", error});
