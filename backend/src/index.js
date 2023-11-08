@@ -4,6 +4,7 @@ import productRouter from "./routes/ProductRoutes.js";
 import categoryRouter from "./routes/CategoryRoutes.js";
 import supplierRouter from "./routes/SupplierRoutes.js";
 import orderRouter from "./routes/OrderRoutes.js";
+import orderProductRouter from "./routes/OrderProductRoutes.js";
 import { testConnection } from "./database/connect.js";
 import ProductModel from "./models/ProductModel.js";
 import ProductTypeModel from "./models/ProductTypeModel.js";
@@ -24,6 +25,7 @@ app.use(express.json());
 
 app.use("/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerSpec));
 
+app.use(orderProductRouter);
 app.use(productTypeRouter);
 app.use(productRouter);
 app.use(categoryRouter);
@@ -35,21 +37,23 @@ if(process.env.NODE_ENV !== "test") {
   
   (async () => {
     try {
-      await ControlModel.sync({ force: true });
-      await CategoryModel.sync({ force: true });
-      await SupplierModel.sync({ force: true });
-      await ProductTypeModel.sync({ force: true });
-      await ProductModel.sync({ force: true });
-      await OrderModel.sync({ force: true });
-      await OrderProductModel.sync({ force: true });
+      setupAssociations();
+
+      console.log("Associações configuradas.");
+    } catch(error) {
+      console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
+    } 
+
+    try {
+      await ControlModel.sync({ alter: true });
+      await CategoryModel.sync({ alter: true });
+      await SupplierModel.sync({ alter: true });
+      await ProductTypeModel.sync({ alter: true });
+      await ProductModel.sync({ alter: true });
+      await OrderModel.sync({ alter: true });
+      await OrderProductModel.sync({ alter: true });
   
       console.log("Banco de dados sincronizado!");
-      
-      try {
-        setupAssociations();
-      } catch(error) {
-        console.error("Falha na configuração de associações das tabelas do banco de dados: ", error);
-      } 
       
       await seed();
     } catch(error) {

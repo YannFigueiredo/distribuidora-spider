@@ -6,9 +6,28 @@ import CategoryModel from "../models/CategoryModel.js";
 import SupplierModel from "../models/SupplierModel.js";
 
 export const setupAssociations = () => {
-  OrderModel.belongsToMany(ProductModel, { through: OrderProductModel, onDelete: "CASCADE", onUpdate: "CASCADE" });
-  ProductModel.belongsToMany(OrderModel, { through: OrderProductModel, onDelete: "CASCADE", onUpdate: "CASCADE" });
-  ProductModel.belongsTo(ProductTypeModel, { as: "productType", onDelete: "RESTRICT" });
-  ProductTypeModel.belongsTo(CategoryModel, { as: "category" });
-  ProductTypeModel.belongsTo(SupplierModel, { as: "supplier" });
+  OrderModel.belongsToMany(
+    ProductModel, 
+    { 
+      through: OrderProductModel, 
+      onDelete: "CASCADE", 
+      onUpdate: "CASCADE" 
+    }
+  );
+  ProductModel.belongsToMany(
+    OrderModel, 
+    { 
+      through: OrderProductModel, 
+      onDelete: "CASCADE", 
+      onUpdate: "CASCADE" 
+    }
+  );
+  ProductModel.belongsTo(
+    ProductTypeModel, 
+    {
+      onDelete: "RESTRICT" 
+    }
+  );
+  ProductTypeModel.belongsTo(CategoryModel);
+  ProductTypeModel.belongsTo(SupplierModel);
 };

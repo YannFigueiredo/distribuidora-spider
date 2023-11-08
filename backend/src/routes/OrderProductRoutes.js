@@ -47,7 +47,7 @@ const orderProductRouter = Router();
  *       400:
  *         description: Bad Request
  */
-orderProductRouter.get("/order-product", OrderProductController.listOrders);
+orderProductRouter.get("/order-product", OrderProductController.listOrdersProduct);
 
 /**
  * @swagger
@@ -91,7 +91,7 @@ orderProductRouter.get("/order-product", OrderProductController.listOrders);
  *       404:
  *         description: Not Found
  */
-orderProductRouter.get("/order-product/:id", OrderProductController.listOrder);
+orderProductRouter.get("/order-product/:id", OrderProductController.listOrderProduct);
 
 /**
  * @swagger
@@ -151,7 +151,7 @@ orderProductRouter.get("/order-product/:id", OrderProductController.listOrder);
  *       400:
  *         description: Bad Request
  */
-orderProductRouter.post("/order-product", OrderProductController.createOrder);
+orderProductRouter.post("/order-product", OrderProductController.createOrderProduct);
 
 /**
  * @swagger
@@ -214,7 +214,7 @@ orderProductRouter.post("/order-product", OrderProductController.createOrder);
 orderProductRouter.patch(
   "/order-product/:id",
   OrderProductController.updateValidation,
-  OrderProductController.updateOrder
+  OrderProductController.updateOrderProduct
 );
 
 /**
@@ -240,7 +240,7 @@ orderProductRouter.patch(
 orderProductRouter.delete(
   "/order-product/:id",
   OrderProductController.deleteValidation,
-  OrderProductController.deleteOrder
+  OrderProductController.deleteOrderProduct
 );
 
 export default orderProductRouter;
