@@ -30,10 +30,10 @@ const orderProductRouter = Router();
  *                  id:
  *                    type: integer
  *                    description: id da relação ordem/produto
- *                  order_id:
+ *                  orderId:
  *                    type: integer
  *                    description: id da ordem
- *                  product_id:
+ *                  productId:
  *                    type: integer
  *                    description: id do produto
  *                  createdAt:
@@ -74,10 +74,10 @@ orderProductRouter.get("/order-product", OrderProductController.listOrdersProduc
  *                 id:
  *                   type: integer
  *                   description: id da relação ordem/produto
- *                 order_id:
+ *                 orderId:
  *                   type: integer
  *                   description: id da ordem
- *                 product_id:
+ *                 productId:
  *                   type: integer
  *                   description: id do produto
  *                 createdAt:
@@ -114,15 +114,15 @@ orderProductRouter.get("/order-product/:id", OrderProductController.listOrderPro
  *          schema:
  *            type: object
  *            properties:
- *              order_id:
+ *              orderId:
  *               type: integer
  *               description: id da ordem
- *              product_id:
+ *              productId:
  *                type: integer
  *                description: id do produto
  *            required:
- *              - order_id
- *              - product_id 
+ *              - orderId
+ *              - productId 
  *     responses:
  *       200:
  *         description: OK
@@ -134,10 +134,10 @@ orderProductRouter.get("/order-product/:id", OrderProductController.listOrderPro
  *                 id:
  *                   type: integer
  *                   description: id da relação ordem/produto
- *                 order_id:
+ *                 orderId:
  *                   type: integer
  *                   description: id da ordem
- *                 product_id:
+ *                 productId:
  *                   type: integer
  *                   description: id do produto
  *                 createdAt:
@@ -174,15 +174,15 @@ orderProductRouter.post("/order-product", OrderProductController.createOrderProd
  *          schema:
  *            type: object
  *            properties:
- *              order_id:
+ *              orderId:
  *               type: integer
  *               description: id da ordem
- *              product_id:
+ *              productId:
  *                type: integer
  *                description: id do produto
  *            required:
- *              - order_id
- *              - product_id
+ *              - orderId
+ *              - productId
  *     responses:
  *       200:
  *         description: OK
@@ -194,10 +194,10 @@ orderProductRouter.post("/order-product", OrderProductController.createOrderProd
  *                 id:
  *                   type: integer
  *                   description: id da relação ordem/produto
- *                 order_id:
+ *                 orderId:
  *                   type: integer
  *                   description: id da ordem
- *                 product_id:
+ *                 productId:
  *                   type: integer
  *                   description: id do produto
  *                 createdAt:

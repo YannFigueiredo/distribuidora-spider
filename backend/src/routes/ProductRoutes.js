@@ -42,6 +42,9 @@ const productRouter = Router();
  *                  batch:
  *                    type: string
  *                    description: lote do produto
+ *                  productTypeId:
+ *                    type: integer
+ *                    description: id do tipo de produto
  *                  createdAt:
  *                    type: string
  *                    format: date
@@ -91,7 +94,10 @@ productRouter.get("/product", ProductController.listProducts);
  *                   description: valor do produto
  *                 batch:
  *                   type: string
- *                   description: lote do produto              
+ *                   description: lote do produto 
+ *                 productTypeId:
+ *                   type: integer
+ *                   description: id do tipo de produto             
  *                 createdAt:
  *                   type: string
  *                   format: date
@@ -130,12 +136,16 @@ productRouter.get("/product/:id", ProductController.listProduct);
  *                description: valor do produto
  *              batch:
  *                type: string
- *                description: lote do produto   
+ *                description: lote do produto
+ *              productTypeId:
+ *                type: integer
+ *                description: id do tipo de produto   
  *            required:
  *              - name 
  *              - quantity
  *              - value
  *              - batch
+ *              - productTypeId
  *     responses:
  *       200:
  *         description: OK
@@ -158,7 +168,10 @@ productRouter.get("/product/:id", ProductController.listProduct);
  *                   description: valor do produto
  *                 batch:
  *                   type: string
- *                   description: lote do produto   
+ *                   description: lote do produto
+ *                 productTypeId:
+ *                   type: integer
+ *                   description: id do tipo de produto
  *                 createdAt:
  *                   type: string
  *                   format: date
@@ -209,11 +222,15 @@ productRouter.post(
  *              batch:
  *                type: string
  *                description: lote do produto 
+ *              productTypeId:
+ *                type: integer
+ *                description: id do tipo de produto
  *            required:
  *              - name 
  *              - quantity
  *              - value
  *              - batch
+ *              - productTypeId
  *     responses:
  *       200:
  *         description: OK
@@ -237,6 +254,9 @@ productRouter.post(
  *                 batch:
  *                   type: string
  *                   description: lote do produto 
+ *                 productTypeId:
+ *                   type: integer
+ *                   description: id do tipo de produto
  *                 createdAt:
  *                   type: string
  *                   format: date

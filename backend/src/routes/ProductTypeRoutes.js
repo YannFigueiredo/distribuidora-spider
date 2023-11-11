@@ -33,6 +33,12 @@ const productTypeRouter = Router();
  *                  name:
  *                    type: string
  *                    description: nome do tipo de produto
+ *                  supplierId:
+ *                    type: integer
+ *                    description: id do fornecedor
+ *                  categoryId:
+ *                    type: integer
+ *                    description: id da categoria
  *                  createdAt:
  *                    type: string
  *                    format: date
@@ -74,6 +80,12 @@ productTypeRouter.get("/product-type", ProductTypeController.listProductsTypes);
  *                 name:
  *                   type: string
  *                   description: nome do tipo de produto
+ *                 supplierId:
+ *                   type: integer
+ *                   description: id do fornecedor
+ *                 categoryId:
+ *                   type: integer
+ *                   description: id da categoria
  *                 createdAt:
  *                   type: string
  *                   format: date
@@ -111,8 +123,16 @@ productTypeRouter.get("/product-type/:id", ProductTypeController.listProductType
  *              name:
  *                type: string
  *                description: Nome do tipo de produto
+ *              supplierId:
+ *                type: integer
+ *                description: id do fornecedor
+ *              categoryId:
+ *                type: integer
+ *                description: id da categoria
  *            required:
  *              - name 
+ *              - supplierId
+ *              - categoryId
  *     responses:
  *       200:
  *         description: OK
@@ -127,6 +147,12 @@ productTypeRouter.get("/product-type/:id", ProductTypeController.listProductType
  *                 name:
  *                   type: string
  *                   description: nome do tipo de produto
+ *                 supplierId:
+ *                   type: integer
+ *                   description: id do fornecedor
+ *                 categoryId:
+ *                   type: integer
+ *                   description: id da categoria
  *                 createdAt:
  *                   type: string
  *                   format: date
@@ -168,8 +194,16 @@ productTypeRouter.post(
  *              name:
  *                type: string
  *                description: Nome do tipo de produto
+  *             supplierId:
+ *                type: integer
+ *                description: id do fornecedor
+ *              categoryId:
+ *                type: integer
+ *                description: id da categoria
  *            required:
  *              - name 
+ *              - supplierId
+ *              - categoryId
  *     responses:
  *       200:
  *         description: OK
@@ -184,6 +218,12 @@ productTypeRouter.post(
  *                 name:
  *                   type: string
  *                   description: nome do tipo de produto
+ *                 supplierId:
+ *                   type: integer
+ *                   description: id do fornecedor
+ *                 categoryId:
+ *                   type: integer
+ *                   description: id da categoria
  *                 createdAt:
  *                   type: string
  *                   format: date
