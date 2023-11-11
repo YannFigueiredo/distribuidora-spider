@@ -1,6 +1,5 @@
 import { connection } from "../database/connect.js";
 import { DataTypes, Model } from "sequelize";
-//import ProductTypeModel from "./ProductTypeModel.js";
 
 class ProductModel extends Model {} 
 
@@ -46,15 +45,7 @@ ProductModel.init(
           }
         }
       }
-    },
-    /*productTypeId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "ProductTypeModel",
-        key : "id"
-      }
-    }*/
+    }
   },
   {
     sequelize: connection,
