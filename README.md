@@ -27,7 +27,7 @@ Sistema de gerenciamento de estoque da distribuidora Spider, empresa fictícia e
 
 # Como executar o projeto
 
-## Back end
+## Backend local
 Pré-requisitos: Node.js, Docker e Docker Compose
 
 ```bash
@@ -41,14 +41,18 @@ cd backend
 npm i
 
 # criar e iniciar o banco de dados com docker-compose
+# criar um arquivo .env preenchendo as informações como em .env.example, iniciar o docker e depois executar o comando abaixo
 docker-compose up
 
-# criar e inciar banco de dados locamente (alternativa ao docker-compose)
-# criar um banco MySQL chamado "spider_db" e preencher as informações no arquivo .env
+# criar e inciar banco de dados localmente (alternativa ao docker-compose)
+# criar um banco MySQL chamado "spiderdb" e preencher as informações em um arquivo .env segundo .env.example
 
 # executar o projeto
 npm run start
 ```
+## Backend em produção
+<a href="https://distribuidora-spider-api.onrender.com/api-docs">Clique aqui</a>
+
 # Autor
 
 Yann Fabricio Cardoso de Figueiredo
