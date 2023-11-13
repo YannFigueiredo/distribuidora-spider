@@ -6,8 +6,14 @@ const options = {
     info: {
       title: "Distribuidora Spider API",
       version: "1.0.0",
-      description: "Documentação da API do projeto Distribuidora Spider."
-    }
+      description: "Documentação da API do projeto Distribuidora Spider. A base URL é https://distribuidora-spider-api.onrender.com."
+    },
+    servers: [
+      {
+        url: "https://distribuidora-spider-api.onrender.com",
+        description: "Base URL"
+      }
+    ]
   },
   apis: ['./src/routes/*.js']
 };
