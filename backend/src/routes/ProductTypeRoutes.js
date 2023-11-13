@@ -194,7 +194,7 @@ productTypeRouter.post(
  *              name:
  *                type: string
  *                description: Nome do tipo de produto
-  *             supplierId:
+ *              supplierId:
  *                type: integer
  *                description: id do fornecedor
  *              categoryId:
@@ -232,8 +232,8 @@ productTypeRouter.post(
  *                   type: string
  *                   format: date
  *                   description: atualização do tipo de produto
- *       404:
- *         description: Not Found
+ *       400:
+ *         description: Bad Request
  */
 productTypeRouter.patch(
   "/product-type/:id", 
